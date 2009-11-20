@@ -1,0 +1,18 @@
+BASE=${HOME}/krdwrd/trunk/src/pipeline
+CORPUS=fiasco
+
+# output directory for app pipe output
+OUT=$BASE/pipeout/$CORPUS
+# url list
+PLAN=$BASE/plan.$CORPUS
+BASEURL=https://krdwrd.org/pages/dat/$CORPUS/merged
+# normalized feature vectors
+SVMIN=$BASE/svmin/$CORPUS
+# SVM models
+MODELS=$BASE/models/$CORPUS
+# SVM predictions
+PREDICT=$BASE/predict/$CORPUS
+# XUL binary
+XULRUNNER=${BASE}/xulrunner
+# XUL application directory
+APP=${BASE}/app

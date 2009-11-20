@@ -1,0 +1,23 @@
+
+1. setup
+
+* app in app/
+* edit config.sh
+
+2. ./runpipe.sh
+( 2.1 ./viz.sh 
+  2.2 ./clfeat.sh )
+
+3. ./out2train.sh
+(
+  3.1 ./targetweight.sh )
+
+4. ./scale.sh
+
+# 5. ./cross.py 
+ # for i in svmin/CORPUS/*.scaled; do ./cross.py ${i}; done
+ # ./cross.py svmin/CORPUS/allvecs.targetweight
+
+# 6. ./batch.sh
+# 6. ./learn.sh
+
