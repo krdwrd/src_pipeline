@@ -28,8 +28,8 @@ do
 
      svm-train -c $c -g $g -m 1024 $f $MOD
      svm-predict $TEST $MOD $PRED
-     awk '{print $1;}' < $TEST | paste - $PRED | awk -f res.awk >> $RES
-     awk '{print $1;}' < $TEST | paste - $PRED $TESTW | awk -f resweight.awk >> $RESW
+     awk '{print $1;}' < $TEST | paste - $PRED | awk -f resw.awk >> $RES
+     awk '{print $1;}' < $TEST | paste - $PRED $TESTW | awk -f resw.awk >> $RESW
 done
 done
 done
