@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. `dirname $0`/config.sh
+. `dirname $0`/config.pipe
 AWCORPUS=canola.20090924
 
 PLAINCORPUS=$(dirname $0)/.plaincorp

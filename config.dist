@@ -5,6 +5,7 @@ CORPUS=canola
 OUT=$BASE/pipeout/$CORPUS
 # url list
 PLAN=$BASE/plan.$CORPUS
+#BASEURL=file://${HOME}/krdwrd/pipeline/pipein/merged
 BASEURL=https://krdwrd.org/pages/dat/$CORPUS/merged
 # normalized feature vectors
 SVMIN=$BASE/svmin/$CORPUS
@@ -12,7 +13,5 @@ SVMIN=$BASE/svmin/$CORPUS
 MODELS=$BASE/models/$CORPUS
 # SVM predictions
 PREDICT=$BASE/predict/$CORPUS
-# XUL binary
-XULRUNNER=${BASE}/xulrunner
-# XUL application directory
+# krdwrd application directory
 APP=${BASE}/app

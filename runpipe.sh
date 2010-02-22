@@ -1,6 +1,12 @@
 #!/bin/bash
 
-. `dirname $0`/config.sh
+CONFIG=$(dirname $0)/config.pipe
+if [ ! -f ${CONFIG} ]; then
+    echo $(basename $0): Adapt FILE:config.dist and save it as $(basename ${CONFIG}) 
+    exit 1
+else
+    . ${CONFIG}
+fi
 
 count=0
 total=`wc -l < $PLAN`
@@ -11,12 +17,12 @@ do
   echo ""
   echo " ------ $count of $total (page id: ${i}) ------"
   echo ""
-  $XULRUNNER $APP/application.ini \
+  $APP/krdwrd-f \
     -pipe $BASEURL/$i \
-    -out $OUT/$i
-  #$XULRUNNER $APP/application.ini \
+    -out $OUT/$i \
+    -pic 
+  #  -proxy localhost:1234
   #  -pipe https://krdwrd.org/pages/bin/subm/$i/2 \
-  #  -out $OUT/$i
 done
 
 echo

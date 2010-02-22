@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ./config.sh
+. ./config.pipe
 
 for f in ${PREDICT}/*.pred 
 do

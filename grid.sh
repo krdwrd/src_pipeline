@@ -1,28 +1,31 @@
 #!/bin/bash
 
-. ./config.sh
+. ./config.pipe
 
 gnuplot=~/usr/bin/gnuplot
 svmtrain=~/usr/bin/svm-train
 
 
-for mix in dom viz txt viz-txt dom-txt-viz; 
+for mix in xy2 bte dom xy2-bte xy2-dom bte-dom xy2-bte-dom; 
 do
 
     case ${mix} in 
+        xy2)
+            cmin=2; cmax=18; cstep=2; gmin=8; gmax=-1; gstep=-2; cross=3;
+        ;;
+        bte)
+            cmin=0; cmax=18; cstep=2; gmin=5; gmax=-1; gstep=-2; cross=3;
+        ;;
         dom)
             cmin=4; cmax=18; cstep=2; gmin=5; gmax=-1; gstep=-2; cross=3;
-        ;;
-        viz)
-            cmin=2; cmax=18; cstep=2; gmin=8; gmax=-1; gstep=-2; cross=3;
         ;;
         txt)
             cmin=0; cmax=18; cstep=2; gmin=0; gmax=-6; gstep=-2; cross=3;
         ;;
-        viz-txt)
+        xy2-txt)
             cmin=4; cmax=10; cstep=1; gmin=-1; gmax=-6; gstep=-1; cross=5;
         ;;
-        dom-txt-viz)
+        dom-xy2-txt)
             cmin=0; cmax=10; cstep=1; gmin=0; gmax=-8; gstep=-1; cross=5;
         ;;
         *)

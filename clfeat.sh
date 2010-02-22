@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-. `dirname $0`/config.sh
+. `dirname $0`/config.pipe
 
 count=0
 for i in ${OUT}/*.txt

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ./config.sh
+. ./config.pipe
 
 MOD=$BASE/models/canola/viz-dom.allvecs.scaled.1.learn.10-0.005.mod
 

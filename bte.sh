@@ -1,26 +1,7 @@
 #!/usr/bin/env bash
+#
+# use the krdwrd's BTE pipe output and filter the TXT pipe output accrodingly
 
-. `dirname $0`/config.sh
+[ -n $1 ] && { echo "Usage: $(basename $0) pipeout.bte (with pipeout.txt in the same directory.)" ; exit 1;}
 
-count=0
-for i in ${OUT}/*.txt
-do 
-  let count++
-  # if [[ -f ${PREDICT}/$(basename ${i} .txt).btxte ]]; then echo -n "."; continue; fi
-  # echo -n "$(basename ${i} .txt) "
-  ./bte.py ${i} ${OUT}/$(basename ${i} .txt).dom  > ${PREDICT}/$(basename ${i} .txt).btxte 
-  cat ${PREDICT}/$(basename ${i} .txt).btxte
-done > ${PREDICT}/allvecs.btxte
-echo; echo ${count}
-
-
-count=0
-for i in ${OUT}/*.cl
-do 
-  let count++
-  # if [[ -f ${PREDICT}/$(basename ${i} .cl).btcle ]]; then echo -n "."; continue; fi
-  # echo -n "$(basename ${i} .cl) "
-  ./bte.py ${i} ${OUT}/$(basename ${i} .cl).dom  > ${PREDICT}/$(basename ${i} .cl).btcle 
-  cat ${PREDICT}/$(basename ${i} .cl).btcle
-done > ${PREDICT}/allvecs.btcle
-echo; echo ${count}
+paste -d ' ' ${1} $(dirname ${1})/$(basename ${1} .bte).txt | grep -E "^[0-9]+ [0-9]+ 1 " | cut -d ' ' -f 4- | uniq
