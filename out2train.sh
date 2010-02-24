@@ -49,13 +49,3 @@ out2train "xy2 bte"
 out2train "xy2 dom"
 out2train "bte dom"
 out2train "xy2 bte dom"
-
-#count=0
-#for g in $OUT/*.gold
-#do
-#    let count++
-#    i=`basename $g .gold`
-#    paste -d ' ' $OUT/$i.{viz,dom,txtfeat} | ./vectorize.py > $SVMIN/$i.viz-dom-txt.vecs
-#    paste -d ' ' $SVMIN/$i.{target,viz-dom-txt.vecs}
-#done > $SVMIN/viz-dom-txt.allvecs
-#echo; echo ${count}
