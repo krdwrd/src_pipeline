@@ -1,8 +1,9 @@
 
 1. setup
 
-* app in app/
-* edit config.pipe
+* app in app/ - e.g. 'ln -s ../app'
+* Victor in victor/ - cf. trunk/external/Victor
+* copy config.dist to config.sh - and edit config.sh
 
 2. ./runpipe.sh
 # obsoleted by new xy feat: 2.1 ./viz.sh 
