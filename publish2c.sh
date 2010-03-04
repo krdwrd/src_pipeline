@@ -48,9 +48,14 @@ do
     if [[ "${W[1]}" -gt 500 ]]
     then
         # file has < 5000 words? then check for WWWOFFLE, 404, etc pages
-        if [[ "${W[0]}" -lt 5000 ]]
+        if [[ "${W[0]}" -lt 4500 ]]
         then
-            [ -z $(grep -l -E "(WWWOFFLE)|(Not Found.*404)|(404.*Not Found)|(Error.*404)|(404.*Error)" ${B}.cl ) ] || \
+            [ -z $(grep -l -E "(WWWOFFLE)|\
+                (Not Found.*404)|\
+                (404.*Not Found)|\
+                (Error.*404)|\
+                (404.*Error)|\
+                (Page Not Found)" ${B}.cl ) ] || \
             {
                 let lt++
                 echo "${fid} err:404 ${W[0]} ${W[1]}" >> $FILELIST.no
