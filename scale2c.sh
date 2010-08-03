@@ -1,17 +1,14 @@
 #!/bin/bash
 
-. `dirname $0`/config.pipe
+if [[ -z "$1" || -z "$2" || -z "$3" || -n "$4" ]]
+then
+    echo "Usage:$(basename $0) INFILE SCALEFILE OUTFILE"
+    echo " Scale features from INFILE according to SCALEFILE to OUTFILE"
+    exit 1
+fi
 
-count=0
+INFILE=$1
+SCALE=$2
+OUTFILE=$3
 
-for a in ${SVMIN}/*.vecs
-do
-  let count++
-  if [[ -f ${a}.scaled ]]; then echo -n "."; continue; fi
-  echo -n "$(basename ${a} .vecs) "
-
-  svm-scale -r ./svmin/full.canola.20090924/viz-dom.allvecs.scale_range $a > $a.scaled
-done
-
-echo
-echo ${count}
+svm-scale -r "$SCALE" "$INFILE" > "$OUTFILE"
