@@ -5,9 +5,9 @@ URL=$1
 TMPOUT=$(tempfile) || exit 1
 if [ -z $2 ]; then OUT=${TMPOUT}; else OUT=$2; fi
 
-FEATS="xy2-bte-dom-txtf"
-SCALE="xy2-bte-dom-txtf.scale" 
-MODEL="xy2-bte-dom-txtf.mod" 
+FEATS=${FEATS:-"xy2-bte-dom-txtf"}
+SCALE=${SCALE:-"xy2-bte-dom-txtf.scale"}
+MODEL=${MODEL:-"xy2-bte-dom-txtf.mod"} 
 
 app/krdwrd -pipe "$URL" -pic -out "$OUT" -proxy "\"\"" 
 $BASE/txtf.sh "$OUT".txt "$OUT".txtf

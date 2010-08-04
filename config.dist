@@ -1,5 +1,5 @@
 BASE=${HOME}/krdwrd/trunk/src/pipeline
-CORPUS=canola
+CORPUS=${CORPUS:-"canola"}
 
 # output directory for app pipe output
 OUT=$BASE/pipeout/$CORPUS
