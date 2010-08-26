@@ -17,4 +17,4 @@ FEATS=${2} # "xy2 bte dom txtf"
 GLOBFEATS=${2//-/,} # "xy2-bte-dom-txtf"
 OUTFBN=$3
 
-eval paste -d \' \' "${INFBN}."\{${GLOBFEATS}\} | ./vectorize2c.py > "$OUTFBN."${FEATS}.vecs
+eval paste -d \' \' "${INFBN}."\{${GLOBFEATS}\} | $(dirname $0)/vectorize2c.py > "$OUTFBN."${FEATS}.vecs
