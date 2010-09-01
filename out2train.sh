@@ -1,6 +1,8 @@
 #!/bin/bash
 
-. `dirname $0`/config.pipe
+. $(dirname $0)/config.pipe
+
+[ -d $SVMIN ] || mkdir -p $SVMIN 
 
 echo -n "target: "
 count=0
@@ -49,3 +51,9 @@ out2train "xy2 bte"
 out2train "xy2 dom"
 out2train "bte dom"
 out2train "xy2 bte dom"
+out2train "txtf"
+out2train "xy2 txtf"
+out2train "bte txtf"
+out2train "dom txtf"
+out2train "bte dom txtf"
+out2train "xy2 bte dom txtf"
