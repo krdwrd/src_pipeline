@@ -14,12 +14,13 @@
 count=0
 for i in ${OUT}/*.txt
 do
+    # if ! (( $count % 5000 )); then echo -n "${count} "; fi
     let count++
 
     if [[ -f ${OUT}/$(basename ${i} .txt).txtf ]]; then echo -n "."; continue; fi
 
     echo -n "$(basename ${i} .txt) "
-    PERL5LIB=${PERL5LIB}:$(dirname ${0})/victor ./victor/krdwrd.pl --config victor/configs/krdwrd.conf --format krdwrd ${i} ${OUT}/$(basename ${i} .txt).txtf;
+    PERL5LIB=${PERL5LIB}:$(dirname ${0})/victor $(dirname ${0})/victor/krdwrd.pl --config victor/configs/krdwrd.conf --format krdwrd ${i} ${OUT}/$(basename ${i} .txt).txtf;
 done
 
 echo

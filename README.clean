@@ -6,7 +6,7 @@
 * copy config.dist to config.sh - and edit config.sh
 
 2. ./runpipe2c.sh
-2.1 ./clfeat.sh 
+2.1 ./clfeat2c.sh 
 
 3. ./out2c.sh
 
