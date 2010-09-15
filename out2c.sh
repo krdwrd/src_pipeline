@@ -27,7 +27,8 @@ function out2train
         if [[ ! -f  $OUT/$i.${1// /-}.scaled ]]
         then
             eval paste -d \' \' $(for j in $1; do echo '<(cat '"$OUT/$i.$j"') '; done;) | ${BASE}/vectorize2c.py > ${OUT}/$i.${1// /-}.vecs
-            svm-scale -r $SCALE ${OUT}/$i.${1// /-}.vecs > ${OUT}/$i.${1// /-}.scaled
+            svm-scale -r $SCALE ${OUT}/$i.${1// /-}.vecs > ${OUT}/$i.${1// /-}.scaled \
+            && echo -n "+"
             rm ${OUT}/$i.${1// /-}.vecs
         else
             echo -n "."
@@ -35,7 +36,8 @@ function out2train
 
         if [[ -f ${OUT}/$i.${1// /-}.scaled && ! -f $OUT/$i.pred ]]
         then
-            svm-predict ${OUT}/$i.${1// /-}.scaled $MODEL $OUT/$i.pred > /dev/null 2>&1
+            svm-predict ${OUT}/$i.${1// /-}.scaled $MODEL $OUT/$i.pred > /dev/null 2>&1 \
+            && echo "+"
         else
             echo -n "."
         fi
