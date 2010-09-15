@@ -22,6 +22,8 @@ function out2train
     do
         let count++
 
+        trap "rm -v $OUT/$i.${1// /-}.scaled $OUT/$i.pred; exit 1" ERR INT QUIT TERM KILL
+
         if [[ ! -f  $OUT/$i.${1// /-}.scaled ]]
         then
             eval paste -d \' \' $(for j in $1; do echo '<(cat '"$OUT/$i.$j"') '; done;) | ${BASE}/vectorize2c.py > ${OUT}/$i.${1// /-}.vecs
@@ -31,7 +33,7 @@ function out2train
             echo -n "."
         fi
 
-        if [[ -f ${OUT}/$i.${1// /-}.scaled && ! -f $i.pred ]]
+        if [[ -f ${OUT}/$i.${1// /-}.scaled && ! -f $OUT/$i.pred ]]
         then
             svm-predict ${OUT}/$i.${1// /-}.scaled $MODEL $OUT/$i.pred > /dev/null 2>&1
         else
