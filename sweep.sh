@@ -7,10 +7,11 @@ URL=$1
 TMPOUT=$(mktemp -u) || exit 1
 if [ -z $2 ]; then OUT=${TMPOUT}; else OUT=$2; fi
 PROXY="\"\""
+PROXY="proxy.unitn.it:3128"
 
 FEATS=${FEATS:-"xy2-bte-dom-txtf"}
-SCALE=${SCALE:-"xy2-bte-dom-txtf.scale"}
-MODEL=${MODEL:-"xy2-bte-dom-txtf.mod"} 
+SCALE=${SCALE:-"${BASE}/xy2-bte-dom-txtf.scale"}
+MODEL=${MODEL:-"${BASE}/xy2-bte-dom-txtf.mod"} 
 
 ###
 # first run: produce the feature files then,
@@ -22,8 +23,8 @@ MODEL=${MODEL:-"xy2-bte-dom-txtf.mod"}
 $BASE/app/krdwrd -pipe "$URL" -pic -out "$OUT" -proxy "$PROXY" \
 && $BASE/txtf.sh "$OUT".txt "$OUT".txtf \
 && $BASE/vectorize2c.sh "$OUT" "${FEATS}" "$OUT" \
-&& $BASE/libsvm/svm-scale -r "${BASE}/${SCALE}" "${OUT}.${FEATS}".vecs > "$OUT".scaled \
-&& $BASE/libsvm/svm-predict "$OUT".scaled "${BASE}/${MODEL}" "$OUT".silver \
+&& $BASE/libsvm/svm-scale -r "${SCALE}" "${OUT}.${FEATS}".vecs > "$OUT".scaled \
+&& $BASE/libsvm/svm-predict "$OUT".scaled "${MODEL}" "$OUT".silver \
 && $BASE/app/krdwrd -sweep "$URL" -sweepin "$OUT".silver -out "$OUT" -proxy "$PROXY" \
 && echo -e "\noutput in: $OUT.{png,...pipes...}" \
 || echo $0: failed.
