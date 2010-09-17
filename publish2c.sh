@@ -24,6 +24,7 @@ log=0   # txt files counter
 nlog=0  # no log file (not all: gold,cl,txt,dom,bte,xy2)
 lt=0    # too small
 gt=0    # too large
+ln=0    # too few lines
 pfof=0  # reported 404 errors
 gfof=0  # grep-ed 40{1,3,4} errors
 
