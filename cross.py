@@ -42,7 +42,12 @@ def main():
         else:
             assert False, "unhandled option"
 
-    ifname = args[0]
+    try:
+        ifname = args[0]
+    except IndexError:
+        usage()
+        sys.exit(2)
+
     inp = file(ifname).readlines()
     idx = [i for i in xrange(len(inp))]
 
