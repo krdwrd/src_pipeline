@@ -20,6 +20,8 @@ function out2train
     count=0
     for i in $(cut -d ' ' -f 1 ${CLF})
     do
+        # be verbose from time to time
+        if ! (( $count % 5000 )); then echo -n "${count}"; fi
         let count++
 
         trap "rm -v $OUT/$i.${1// /-}.scaled $OUT/$i.pred; exit 1" ERR INT QUIT TERM KILL
@@ -37,7 +39,7 @@ function out2train
         if [[ -f ${OUT}/$i.${1// /-}.scaled && ! -f $OUT/$i.pred ]]
         then
             svm-predict ${OUT}/$i.${1// /-}.scaled $MODEL $OUT/$i.pred > /dev/null 2>&1 \
-            && echo "+"
+            && echo -n "+"
         else
             echo -n "."
         fi
